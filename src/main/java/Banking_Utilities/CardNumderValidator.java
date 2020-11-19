@@ -1,35 +1,33 @@
 package Banking_Utilities;
 
-public class CardNumderChecker {
-    private String cardIsCorrect = "Card number is correct";
-    private String cardIsNotCorrect = "Card number is not correct";
-    final int sizeNumberOfCard = 16;
-    private int[] digitsOfCardNumber;
-    private boolean numberOfCardIsCorrect;
+public class CardNumderValidator {
+    final static String REPLY_MASSAGE_CORRECT = "Card number is correct";
+    final static String REPLY_MESSAGE_NOT_CORRECT = "Card number is not correct";
+    final static int SIZE_NUMBER_OF_CARD = 16;
     
     protected String processCheckDigit(String cardNumber) {		
         
-       char[] charsOfCardNumber = cardNumber.toCharArray();
+       char[] cardNumberChars = cardNumber.toCharArray();
         
-        boolean onlyDigits = checksThatOnlyDigits(charsOfCardNumber);
-        boolean amountDigits = checksAmountOfDigits(charsOfCardNumber);
+        boolean onlyDigits = areDigitsOnly(cardNumberChars);
+        boolean amountDigits = checksAmountOfDigits(cardNumberChars);
         
         if(onlyDigits == true && amountDigits == true) {
-            digitsOfCardNumber = convertCharToInteger(charsOfCardNumber);
-            numberOfCardIsCorrect = ñhecksThatNumberIsCorrect(digitsOfCardNumber);            
+            int [] digitsOfCardNumber = convertCharToInteger(cardNumberChars);
+            boolean numberOfCardIsCorrect = checksThatNumberIsCorrect(digitsOfCardNumber);            
             
             if(numberOfCardIsCorrect == true) {
-                return cardIsCorrect;
+                return REPLY_MASSAGE_CORRECT;
             } else {
-        	return cardIsNotCorrect;
+        	return REPLY_MESSAGE_NOT_CORRECT;
             }
             
         } else {
-            return cardIsNotCorrect;
+            return REPLY_MESSAGE_NOT_CORRECT;
         }        
     }
     
-    private boolean checksThatOnlyDigits(char[] charsOfCardNumber) {
+    private boolean areDigitsOnly(char[] charsOfCardNumber) {
         for(int i = 0; i < charsOfCardNumber.length; i++) {
             if(!Character.isDigit(charsOfCardNumber[i])) {
         	return false;
@@ -40,22 +38,22 @@ public class CardNumderChecker {
     }
     
     private boolean checksAmountOfDigits(char[] charsOfCardNumber) {
-        if(charsOfCardNumber.length == sizeNumberOfCard) {
+        if(charsOfCardNumber.length == SIZE_NUMBER_OF_CARD) {
             return true;
         } else {
             return false;
         }
     }        
     
-    public boolean ñhecksThatNumberIsCorrect(int[] digitsOfCardNumber) {
+    public boolean checksThatNumberIsCorrect(int[] digitsOfCardNumber) {
         int sumOfAllDigits = 0;
-        int[] tempDigitsOfCardNumber = new int[sizeNumberOfCard];
+        int[] tempDigitsOfCardNumber = new int[SIZE_NUMBER_OF_CARD];
         
         for(int i = 0; i < digitsOfCardNumber.length; i++) {
             if(i%2 == 0) {
-        	tempDigitsOfCardNumber[i] = digitsOfCardNumber[i]*2;
+                tempDigitsOfCardNumber[i] = digitsOfCardNumber[i]*2;
             } else {
-        	tempDigitsOfCardNumber[i] = digitsOfCardNumber[i];
+                tempDigitsOfCardNumber[i] = digitsOfCardNumber[i];
             }
         }
         
@@ -78,7 +76,7 @@ public class CardNumderChecker {
     }
         
     public int[] convertCharToInteger(char[] charsOfCardNumber) {
-        digitsOfCardNumber = new int[sizeNumberOfCard];
+        int[] digitsOfCardNumber = new int[SIZE_NUMBER_OF_CARD];
         
         for(int i = 0; i < charsOfCardNumber.length; i++) {
             digitsOfCardNumber[i] = Character.getNumericValue(charsOfCardNumber[i]);
