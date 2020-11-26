@@ -1,30 +1,42 @@
-package Banking_Utilities;
+package dev.andrylat.banking.card.validators;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardNumderValidator {
     final static String REPLY_MASSAGE_CORRECT = "Card number is correct";
     final static String REPLY_MESSAGE_NOT_CORRECT = "Card number is not correct";
+    final static String REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS = "You entered incorrect ammount of digits";
+    final static String REPLY_MESSAGE_ENTERED_LETTER_OR_CHAR = "You entered a letter or char";
     final static int SIZE_NUMBER_OF_CARD = 16;
     
-    protected String processCheckDigit(String cardNumber) {		
+    public List<String> processCheckDigit(String cardNumber) {		
         
-       char[] cardNumberChars = cardNumber.toCharArray();
+        char[] cardNumberChars = cardNumber.toCharArray();
+        
+        List<String> responseToUser = new ArrayList<>();
         
         boolean onlyDigits = areDigitsOnly(cardNumberChars);
         boolean amountDigits = checksAmountOfDigits(cardNumberChars);
+        boolean numberOfCardIsCorrect;
         
-        if(onlyDigits == true && amountDigits == true) {
+        if(onlyDigits == false) {
+            responseToUser.add(REPLY_MESSAGE_ENTERED_LETTER_OR_CHAR);
+        }
+        if(amountDigits == false) {
+            responseToUser.add(REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS);
+        }
+        if(responseToUser.isEmpty()) {
             int [] digitsOfCardNumber = convertCharToInteger(cardNumberChars);
-            boolean numberOfCardIsCorrect = checksThatNumberIsCorrect(digitsOfCardNumber);            
-            
-            if(numberOfCardIsCorrect == true) {
-                return REPLY_MASSAGE_CORRECT;
+            numberOfCardIsCorrect = checksThatNumberIsCorrect(digitsOfCardNumber);
+            if(numberOfCardIsCorrect == false) {
+                responseToUser.add(REPLY_MESSAGE_NOT_CORRECT);
             } else {
-        	return REPLY_MESSAGE_NOT_CORRECT;
+                responseToUser.add(REPLY_MASSAGE_CORRECT);
             }
-            
-        } else {
-            return REPLY_MESSAGE_NOT_CORRECT;
-        }        
+        }
+        
+        return responseToUser;
     }
     
     private boolean areDigitsOnly(char[] charsOfCardNumber) {
@@ -75,7 +87,7 @@ public class CardNumderValidator {
         }
     }
         
-    public int[] convertCharToInteger(char[] charsOfCardNumber) {
+    private int[] convertCharToInteger(char[] charsOfCardNumber) {
         int[] digitsOfCardNumber = new int[SIZE_NUMBER_OF_CARD];
         
         for(int i = 0; i < charsOfCardNumber.length; i++) {
@@ -83,5 +95,5 @@ public class CardNumderValidator {
         }
         
         return digitsOfCardNumber;
-    }    
+    }
 }

@@ -1,6 +1,10 @@
-package Banking_Utilities;
+package dev.andrylat.banking;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import dev.andrylat.banking.card.validators.CardNumderValidator;
 
 public class CardChecker {
 
@@ -11,8 +15,8 @@ public class CardChecker {
         System.out.println("Enter card number");
         
         String cardNumber = scanner.nextLine();
-        String result = cardNumberValidator.processCheckDigit(cardNumber);
-        
-        System.out.println(result);
+        for(String result: cardNumberValidator.processCheckDigit(cardNumber)) {
+        	System.out.println(result);
+        }
     }
 }
