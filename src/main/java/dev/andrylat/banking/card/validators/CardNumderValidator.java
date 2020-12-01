@@ -29,7 +29,7 @@ public class CardNumderValidator implements CardValidator{
         }
         if(errorMessages.isEmpty()) {
             int [] digitsOfCardNumber = convertCharToInteger(cardNumberChars);
-            boolean numberOfCardIsCorrect = checksThatNumberIsCorrect(digitsOfCardNumber);
+            boolean numberOfCardIsCorrect = checkControlSum(digitsOfCardNumber);
             if(!numberOfCardIsCorrect) {
                 errorMessages.add(REPLY_MESSAGE_NOT_CORRECT);
             }
@@ -56,7 +56,7 @@ public class CardNumderValidator implements CardValidator{
         }
     }        
     
-    public boolean checksThatNumberIsCorrect(int[] digitsOfCardNumber) {
+    private boolean checkControlSum(int[] digitsOfCardNumber) {
         int sumOfAllDigits = 0;
         int[] tempDigitsOfCardNumber = new int[CARD_NUMBER_SIZE];
         
