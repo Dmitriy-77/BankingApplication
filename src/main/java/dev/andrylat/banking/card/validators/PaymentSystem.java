@@ -1,8 +1,11 @@
 package dev.andrylat.banking.card.validators;
 
 public enum PaymentSystem {
-    MIR("2", "Mir"), AMERICAN_EXPRESS("3", "AmericanExpress"),
-    VISA("4", "Visa"), MASTER_CARD("5", "MasterCard"), CHINA_UNION_PAY("6","ChinaUnionPay");
+    MIR("2", "Mir"),
+    AMERICAN_EXPRESS("3", "AmericanExpress"),
+    VISA("4", "Visa"),
+    MASTER_CARD("5", "MasterCard"),
+    CHINA_UNION_PAY("6","ChinaUnionPay");
 	
 	String name;
 	String identifier;
@@ -12,29 +15,15 @@ public enum PaymentSystem {
 	    this.identifier = identifier;
     }
     
-    public static String identifierPaymentSystem(String cardNumber) {
-        String identifier = convertCardNumberToIdentifier(cardNumber);
-        String namePaymenSystem = namePaymentSystem(identifier);
-        
-        return namePaymenSystem;
-    }
-    
-    private static String namePaymentSystem(String identifier) {
+    public static String showNamePaymentSystem(String cardNumber) {        
         String result = "Payment system not defined";
         
-        for(PaymentSystem paymentSystem: PaymentSystem.values()) 
-            if(identifier.equals(paymentSystem.identifier)) {
-        	    result = paymentSystem.name;
-            }
+        for(PaymentSystem paymentSystem: PaymentSystem.values()) {
+            if(cardNumber.startsWith(paymentSystem.identifier)) {
+                result = paymentSystem.name;
+            }        	
+        }
         
-        return result;	
-    }
-    
-    private static String convertCardNumberToIdentifier(String cardNumber) {
-        int identifierIndex = 0;
-        String delimetr = "";
-        String[] identifier = cardNumber.split(delimetr);
-        
-        return identifier[identifierIndex];
+        return result;
     }
 }

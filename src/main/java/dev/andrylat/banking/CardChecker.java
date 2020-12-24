@@ -21,7 +21,7 @@ public class CardChecker {
         List<String> errorMassages = validator.validate(cardNumber);
         
         if(errorMassages.isEmpty()) {
-            String namePaymentSystem = PaymentSystem.identifierPaymentSystem(cardNumber);
+            String namePaymentSystem = PaymentSystem.showNamePaymentSystem(cardNumber);
             System.out.println(namePaymentSystem);
         } else {
         	for(String result: errorMassages) {

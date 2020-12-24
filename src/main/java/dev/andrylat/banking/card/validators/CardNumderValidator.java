@@ -19,7 +19,6 @@ public class CardNumderValidator implements CardValidator{
         
         boolean onlyDigits = areDigitsOnly(cardNumberChars);
         boolean amountDigits = checksAmountOfDigits(cardNumberChars);
-        //boolean numberOfCardIsCorrect;
         
         if(!onlyDigits) {
             errorMessages.add(REPLY_MESSAGE_ENTERED_LETTER_OR_CHAR);
