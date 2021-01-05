@@ -18,13 +18,13 @@ public class CardChecker {
         
         String cardNumber = scanner.nextLine();
         
-        List<String> errorMassages = validator.validate(cardNumber);
+        List<String> errorMessages = validator.validate(cardNumber);
         
-        if(errorMassages.isEmpty()) {
+        if(errorMessages.isEmpty()) {
             String namePaymentSystem = PaymentSystem.showNamePaymentSystem(cardNumber);
             System.out.println(namePaymentSystem);
         } else {
-        	for(String result: errorMassages) {
+        	for(String result: errorMessages) {
             	System.out.println(result);
             }
         }
