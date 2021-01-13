@@ -12,11 +12,20 @@ public class CardNumderValidator implements CardValidator{
     @Override
     public List<String> validate(String cardNumber) {		
         
-        char[] cardNumberChars = cardNumber.toCharArray();
-        
+        //char[] cardNumberChars = cardNumber.toCharArray();
+        DataValidator dataValidator = new EnteredDataValidator();        
         List<String> errorMessages = new ArrayList<>();
         
-        boolean onlyDigits = areDigitsOnly(cardNumberChars);
+        errorMessages = dataValidator.validate(cardNumber);
+        
+        if(!errorMessages.isEmpty()) {
+            return errorMessages;
+        } else {
+            
+        }
+        
+        
+        /*boolean onlyDigits = areDigitsOnly(cardNumberChars);
         boolean amountDigits = checksAmountOfDigits(cardNumberChars);
         
         if(!onlyDigits) {
@@ -24,7 +33,7 @@ public class CardNumderValidator implements CardValidator{
         }
         if(!amountDigits) {
             errorMessages.add(REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS);
-        }
+        }*/
         if(errorMessages.isEmpty()) {
             int [] digitsOfCardNumber = convertCharToInteger(cardNumberChars);
             boolean numberOfCardIsCorrect = checkControlSum(digitsOfCardNumber);
@@ -54,7 +63,7 @@ public class CardNumderValidator implements CardValidator{
         }
     }        
     
-    private boolean checkControlSum(int[] digitsOfCardNumber) {
+  /*  private boolean checkControlSum(int[] digitsOfCardNumber) {
         int sumOfAllDigits = 0;
         int[] tempDigitsOfCardNumber = new int[CARD_NUMBER_SIZE];
         
@@ -82,7 +91,7 @@ public class CardNumderValidator implements CardValidator{
         } else {
             return false;
         }
-    }
+    } */
         
     private int[] convertCharToInteger(char[] charsOfCardNumber) {
         int[] digitsOfCardNumber = new int[CARD_NUMBER_SIZE];

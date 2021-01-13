@@ -24,6 +24,7 @@ class CardNumderValidatorTest {
     
     private List<String> expected;
     private List<String> actual;
+    
     @BeforeEach
     public void creatNewCardNumberValidator () {    
         validator = new CardNumderValidator();
@@ -66,21 +67,5 @@ class CardNumderValidatorTest {
         expected.add(REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS);
         
         assertLinesMatch(expected, actual);
-	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+	}    
 }
