@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import dev.andrylat.banking.card.validators.CardNumderValidator;
-import dev.andrylat.banking.card.validators.CardValidator;
 import dev.andrylat.banking.card.validators.PaymentSystem;
+import dev.andrylat.banking.card.validators.Validator;
 
 public class CardChecker {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CardValidator validator = new CardNumderValidator();
+        Validator validator = new CardNumderValidator();
         
         System.out.println("Enter card number");
         

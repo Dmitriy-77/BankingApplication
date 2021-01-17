@@ -3,8 +3,8 @@ package dev.andrylat.banking.card.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnteredDataValidator implements DataValidator {
-	
+public class EnteredDataValidator implements Validator {
+    
     private static final String REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS = "You entered incorrect ammount of digits";
     private static final String REPLY_MESSAGE_ENTERED_LETTER_OR_CHAR = "You entered a letter or char";
     private static final int CARD_NUMBER_SIZE = 16;
