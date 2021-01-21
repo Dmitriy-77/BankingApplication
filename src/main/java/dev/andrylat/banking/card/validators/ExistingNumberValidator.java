@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NumberValidator implements Validator {
+public class ExistingNumberValidator implements CardValidator {
     
     private static final String REPLY_MESSAGE_NOT_CORRECT = "Card number is not correct";
     

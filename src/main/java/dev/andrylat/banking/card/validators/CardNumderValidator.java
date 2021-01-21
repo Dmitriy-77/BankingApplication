@@ -3,13 +3,13 @@ package dev.andrylat.banking.card.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardNumderValidator implements Validator{
+public class CardNumderValidator implements CardValidator{
     
     @Override
     public List<String> validate(String cardNumber) {		
         
-        Validator enteredDataValidator  = new EnteredDataValidator();
-        Validator numberValidator = new NumberValidator();
+        CardValidator enteredDataValidator  = new ActualDataTemplateValidator();
+        CardValidator numberValidator = new ExistingNumberValidator();
         List<String> errorMessages = new ArrayList<>();
         
         errorMessages = enteredDataValidator.validate(cardNumber);
