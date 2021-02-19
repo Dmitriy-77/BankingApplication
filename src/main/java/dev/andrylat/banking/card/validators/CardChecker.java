@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CardChecker {
+import dev.andrylat.banking.mortgage.calculator.Dialoque;
 
-    public void checker(String cardNumber) {
-    	
+public class CardChecker implements Dialoque{
+
+    @Override
+    public void start() {
+        Scanner scanner =  new Scanner(System.in);
+        
+    	System.out.println("Enter card number");
+    	String cardNumber = scanner.nextLine();
+        
         CardValidator validator = new CardNumderValidator();
         
         List<String> errorMessages = validator.validate(cardNumber);

@@ -4,52 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculatorPayments {
-	private double creditAmount;
-	private double interestRate;
-	private double timingCredit;
-	private double prepayment;
-    
     private static final double AMOUNT_MONTH_IN_YEAR = 12;
     private static final double ONE_HUNDRED_PERCENT = 100;
-    String perviyVznos = "Perviy Vznos - ";
-    String summaCredita = "Summa Credita - ";
-    String amountMonthPlateja = "Amount Month Plateja - ";
-    String osnovnoyPlatej = "Osnovnoy Platej - ";
-    String obshiyPlatej = "Obshiy Platej v mesac- ";
-    String egemesyachniyPlatejPoProcentam = "Egemesyachniy Platej Po Procentam - ";
-    String ostatokPlatega = "Ostatok Platega - ";
     
-	public List<String> calculator (String creditAmount, String interestRate, String timingCredit, String prepayment) {
+    private static final String FIRST_INSTALLMENT = "First installment - ";// ѕервоначальный взнос
+    private static final String CREDIT_AMOUNT = "Credit amount - ";//сумма кредита
+    private static final String MONTHS_PAYMENT = "Months of payment - ";
+    private static final String MAIN_PAYMENT = "Main payment - ";//основной платЄж по телу кредита
+    private static final String OVERALL_PAYMENT = "Overall payment- ";//общий платЄж
+    private static final String INTEREST_PAYMENT = "Interest payment - ";//ежемес€чны платЄж по процентам
+    private static final String LOAN_BALANCE = "Loan balance - "; //остаток платежа(остаток по кредиту)
+    
+    public List<String> calculator (CreditData creditData) {
         List<String> result =  new ArrayList<>();
         
-        this.creditAmount = convertStringToDouble(creditAmount);
-        this.interestRate = convertStringToDouble(interestRate);
-        this.timingCredit = convertStringToDouble(timingCredit);
-        this.prepayment = convertStringToDouble(prepayment);
+        double creditAmount = convertStringToDouble(creditData.getCreditAmount());
+        double interestRate = convertStringToDouble(creditData.getInterestRate());
+        double timingCredit = convertStringToDouble(creditData.getTimingCredit());
+        double prepayment = convertStringToDouble(creditData.getPrepayment());
 	    
-        double perviyVznos = this.creditAmount*this.prepayment/ONE_HUNDRED_PERCENT;
-        double summaCredita = this.creditAmount-perviyVznos;
-        double amountMonthPlateja = this.timingCredit*AMOUNT_MONTH_IN_YEAR;
-        double osnovnoyPlatej = summaCredita/amountMonthPlateja;
+        double firstInstallment = creditAmount * prepayment / ONE_HUNDRED_PERCENT;
+        double creditAmmountWithoutPayment = creditAmount - firstInstallment;
+        double amountMonthPayment = timingCredit * AMOUNT_MONTH_IN_YEAR;
+        double mainPayment = creditAmmountWithoutPayment / amountMonthPayment;
         double summaViplachenyhProcentov;
-        double ostatokPlatega = summaCredita;
+        double loanBalance = creditAmmountWithoutPayment;
         
-        result.add(this.perviyVznos + Double.toString(perviyVznos));
-        result.add(this.summaCredita + Double.toString(summaCredita));
+        result.add(FIRST_INSTALLMENT + Double.toString(firstInstallment));
+        result.add(CREDIT_AMOUNT + Double.toString(creditAmmountWithoutPayment));
         
-        for(int i = 0; i < amountMonthPlateja; i++) {
+        for(int i = 0; i < amountMonthPayment; i++) {
             
-            double egemesyachniyPlatejPoProcentam = ostatokPlatega * this.interestRate / ONE_HUNDRED_PERCENT / AMOUNT_MONTH_IN_YEAR;
-            double obshiyPlatej = egemesyachniyPlatejPoProcentam + osnovnoyPlatej;
-            ostatokPlatega = ostatokPlatega - osnovnoyPlatej;            
+            double egemesyachniyPlatejPoProcentam = loanBalance * interestRate / ONE_HUNDRED_PERCENT / AMOUNT_MONTH_IN_YEAR;
+            double obshiyPlatej = egemesyachniyPlatejPoProcentam + mainPayment;
+            loanBalance = loanBalance - mainPayment;            
             
-            result.add(this.obshiyPlatej + Double.toString(obshiyPlatej) + "; " 
-                          + this.ostatokPlatega + Double.toString(ostatokPlatega));
+            result.add(obshiyPlatej + Double.toString(obshiyPlatej) + "; " 
+                          + loanBalance + Double.toString(loanBalance));
         }
 	    return result;
 	}
 	
-	private Double convertStringToDouble (String data) {
+    private Double convertStringToDouble (String data) {
         Double value = Double.parseDouble(data);
         
         return value;
