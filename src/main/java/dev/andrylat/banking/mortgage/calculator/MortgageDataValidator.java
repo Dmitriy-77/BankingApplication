@@ -18,7 +18,7 @@ public class MortgageDataValidator implements DataValidator{
     private static final String WHOLE_NUMBERS_ONLY = "\\d+";
     
     @Override
-    public List<String> validate(CreditData creditData) {
+    public List<String> validate(InitialCreditData creditData) {
         List<String> errorMessages = new ArrayList<>();
         
         if(!creditData.getCreditAmount().matches(FLOATING_POINT_DATA)) {

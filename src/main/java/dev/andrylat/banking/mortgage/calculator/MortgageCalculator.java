@@ -8,11 +8,13 @@ public class MortgageCalculator implements Dialoque{
     
     @Override
     public void start() {
+        
         Scanner scanner = new Scanner(System.in);
         List<String> errorMessages =  new ArrayList<>();
         DataValidator validator = new MortgageDataValidator();
         CalculatorPayments calculate = new CalculatorPayments();
-        CreditData creditData = new CreditData();
+        InitialCreditData creditData = new InitialCreditData();
+        LoanCalculationData loanCalculationData = new LoanCalculationData();
         
         System.out.println("Enter the loan amount:");
         String creditAmount = scanner.nextLine();
@@ -34,11 +36,12 @@ public class MortgageCalculator implements Dialoque{
         errorMessages = validator.validate(creditData);
         
         if(errorMessages.isEmpty()) {
-            List<String> paymentResult = calculate.calculator(creditData);
+            calculate.calculator(creditData);
             
-            for(String result: paymentResult) {
-                System.out.println(result);
-            }
+            System.out.println("First installment - " + loanCalculationData.getFirstInstallment());
+            System.out.println("Credit amount - " + loanCalculationData.getFinalLoanAmount());
+            System.out.println("Main payment per month - " + loanCalculationData.getMainPaymentPerMonth());
+            System.out.println("Amount month payment - " + loanCalculationData.getAmountMonthPayment());
         } else {
             for(String result: errorMessages) {
                 System.out.println(result);

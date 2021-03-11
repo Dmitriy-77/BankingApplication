@@ -1,6 +1,6 @@
 package dev.andrylat.banking.mortgage.calculator;
 
-public class CreditData {
+public class InitialCreditData {
     
     private String creditAmount;
     private String interestRate;
