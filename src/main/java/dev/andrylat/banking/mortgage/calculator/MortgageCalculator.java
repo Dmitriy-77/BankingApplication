@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import dev.andrylat.banking.Validator;
+import dev.andrylat.banking.Dialoque;
+
 public class MortgageCalculator implements Dialoque{
     
     @Override
@@ -11,7 +14,7 @@ public class MortgageCalculator implements Dialoque{
         
         Scanner scanner = new Scanner(System.in);
         List<String> errorMessages =  new ArrayList<>();
-        DataValidator validator = new MortgageDataValidator();
+        Validator validator = new MortgageDataValidator();
         CalculatorPayments calculate = new CalculatorPayments();
         InitialCreditData creditData = new InitialCreditData();
         LoanCalculationData loanCalculationData = new LoanCalculationData();

@@ -1,9 +1,10 @@
-package dev.andrylat.banking.mortgage.calculator;
+package dev.andrylat.banking;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import dev.andrylat.banking.card.validators.CardChecker;
+import dev.andrylat.banking.mortgage.calculator.MortgageCalculator;
 
 public class ResponseService {
     

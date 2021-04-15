@@ -1,4 +1,4 @@
-package dev.andrylat.banking.mortgage.calculator;
+package dev.andrylat.banking;
 
 public interface Dialoque {
     public void start();

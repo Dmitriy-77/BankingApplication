@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import dev.andrylat.banking.mortgage.calculator.ResponseService;
-
-public class Header {
+public class MainDialoque {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         

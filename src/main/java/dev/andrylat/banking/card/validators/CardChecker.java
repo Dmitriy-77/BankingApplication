@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import dev.andrylat.banking.mortgage.calculator.Dialoque;
+import dev.andrylat.banking.Dialoque;
+import dev.andrylat.banking.Validator;
 
 public class CardChecker implements Dialoque{
 
@@ -15,7 +16,7 @@ public class CardChecker implements Dialoque{
     	System.out.println("Enter card number");
     	String cardNumber = scanner.nextLine();
         
-        CardValidator validator = new CardNumderValidator();
+        Validator validator = new CardNumderValidator();
         
         List<String> errorMessages = validator.validate(cardNumber);
         

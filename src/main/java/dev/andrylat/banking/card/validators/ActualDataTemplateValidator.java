@@ -3,7 +3,9 @@ package dev.andrylat.banking.card.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActualDataTemplateValidator implements CardValidator {
+import dev.andrylat.banking.Validator;
+
+public class ActualDataTemplateValidator implements Validator<String> {
     
     private static final String REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS = "You entered incorrect ammount of digits";
     private static final String REPLY_MESSAGE_ENTERED_LETTER_OR_CHAR = "You entered a letter or char";
