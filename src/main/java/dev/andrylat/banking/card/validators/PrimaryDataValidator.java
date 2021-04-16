@@ -3,11 +3,11 @@ package dev.andrylat.banking.card.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.andrylat.banking.Validator;
+import dev.andrylat.banking.interfaces.Validator;
 
-public class ActualDataTemplateValidator implements Validator<String> {
+public class PrimaryDataValidator implements Validator<String> {
     
-    private static final String REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS = "You entered incorrect ammount of digits";
+    private static final String REPLY_MESSAGE_ENTERED_INCORRECT_AMOUNT_DIGITS = "You entered incorrect amount of digits";
     private static final String REPLY_MESSAGE_ENTERED_LETTER_OR_CHAR = "You entered a letter or char";
     private static final int CARD_NUMBER_SIZE = 16;
     

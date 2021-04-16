@@ -1,9 +1,10 @@
-package dev.andrylat.banking.mortgage.calculator;
+package dev.andrylat.banking.mortgage.validators;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.andrylat.banking.Validator;
+import dev.andrylat.banking.interfaces.Validator;
+import dev.andrylat.banking.mortgage.datacontainers.InitialCreditData;
 
 public class MortgageDataValidator implements Validator<InitialCreditData>{
     

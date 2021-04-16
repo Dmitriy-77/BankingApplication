@@ -1,40 +1,45 @@
-package dev.andrylat.banking.mortgage.calculator;
+package dev.andrylat.banking.mortgage;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import dev.andrylat.banking.Validator;
-import dev.andrylat.banking.Dialoque;
+import dev.andrylat.banking.interfaces.Dialoque;
+import dev.andrylat.banking.interfaces.Validator;
+import dev.andrylat.banking.mortgage.calculator.CalculatorPayments;
+import dev.andrylat.banking.mortgage.calculator.LoanCalculationData;
+import dev.andrylat.banking.mortgage.datacontainers.InitialCreditData;
+import dev.andrylat.banking.mortgage.validators.MortgageDataValidator;
 
-public class MortgageCalculator implements Dialoque{
+public class MortgageCalculatorDialoque implements Dialoque{
     
     @Override
     public void start() {
         
         Scanner scanner = new Scanner(System.in);
-        List<String> errorMessages =  new ArrayList<>();
-        Validator validator = new MortgageDataValidator();
-        CalculatorPayments calculate = new CalculatorPayments();
         InitialCreditData creditData = new InitialCreditData();
-        LoanCalculationData loanCalculationData = new LoanCalculationData();
         
         System.out.println("Enter the loan amount:");
-        String creditAmount = scanner.nextLine();
+        creditData.setCreditAmount(scanner.nextLine());
         
         System.out.println("Enter interest on the loan:");
-        String interestRate = scanner.nextLine();
+        creditData.setInterestRate(scanner.nextLine());
         
         System.out.println("Enter the loan maturity from 1 to 30 years old:");
-        String timingCredit = scanner.nextLine();
+        creditData.setTimingCredit(scanner.nextLine());
         
         System.out.println("Enter advance interest:");
-        String prepayment = scanner.nextLine();
+        creditData.setPrepayment(scanner.nextLine());
         
-        creditData.setCreditAmount(creditAmount);
-        creditData.setInterestRate(interestRate);
-        creditData.setTimingCredit(timingCredit);
-        creditData.setPrepayment(prepayment);
+        printMortgageResult(creditData);
+    }
+    
+    private void printMortgageResult (InitialCreditData creditData) {
+                
+    	List<String> errorMessages =  new ArrayList<>();
+    	Validator validator = new MortgageDataValidator();
+    	CalculatorPayments calculate = new CalculatorPayments();
+    	LoanCalculationData loanCalculationData = new LoanCalculationData();
         
         errorMessages = validator.validate(creditData);
         
@@ -51,4 +56,5 @@ public class MortgageCalculator implements Dialoque{
             }
         }
     }
+    
 }

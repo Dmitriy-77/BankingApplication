@@ -1,13 +1,15 @@
-package dev.andrylat.banking.card.validators;
+package dev.andrylat.banking.card;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import dev.andrylat.banking.Dialoque;
-import dev.andrylat.banking.Validator;
+import dev.andrylat.banking.card.datacontainers.PaymentSystem;
+import dev.andrylat.banking.card.validators.CardNumderValidator;
+import dev.andrylat.banking.interfaces.Dialoque;
+import dev.andrylat.banking.interfaces.Validator;
 
-public class CardChecker implements Dialoque{
+public class CardCheckerDialoque implements Dialoque{
 
     @Override
     public void start() {

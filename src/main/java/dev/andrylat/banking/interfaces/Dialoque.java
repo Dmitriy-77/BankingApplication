@@ -1,4 +1,4 @@
-package dev.andrylat.banking;
+package dev.andrylat.banking.interfaces;
 
 public interface Dialoque {
     public void start();

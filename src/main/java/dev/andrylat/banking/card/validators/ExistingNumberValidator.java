@@ -3,7 +3,7 @@ package dev.andrylat.banking.card.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.andrylat.banking.Validator;
+import dev.andrylat.banking.interfaces.Validator;
 
 
 public class ExistingNumberValidator implements Validator<String> {

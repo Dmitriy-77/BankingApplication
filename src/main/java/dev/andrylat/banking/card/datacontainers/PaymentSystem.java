@@ -1,4 +1,4 @@
-package dev.andrylat.banking.card.validators;
+package dev.andrylat.banking.card.datacontainers;
 
 public enum PaymentSystem {
     MIR("2", "Mir"),
