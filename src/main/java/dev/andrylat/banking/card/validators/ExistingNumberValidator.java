@@ -3,8 +3,10 @@ package dev.andrylat.banking.card.validators;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.andrylat.banking.interfaces.Validator;
 
-public class ExistingNumberValidator implements CardValidator {
+
+public class ExistingNumberValidator implements Validator<String> {
     
     private static final String REPLY_MESSAGE_NOT_CORRECT = "Card number is not correct";
     

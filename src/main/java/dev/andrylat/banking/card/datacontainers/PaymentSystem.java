@@ -1,4 +1,4 @@
-package dev.andrylat.banking.card.validators;
+package dev.andrylat.banking.card.datacontainers;
 
 public enum PaymentSystem {
     MIR("2", "Mir"),
@@ -7,8 +7,8 @@ public enum PaymentSystem {
     MASTER_CARD("5", "MasterCard"),
     CHINA_UNION_PAY("6","ChinaUnionPay");
     
-    String name;
-    String identifier;
+    private String name;
+    private String identifier;
     
     PaymentSystem(String identifier, String name) {
         this.name = name;

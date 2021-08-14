@@ -1,22 +1,24 @@
-package dev.andrylat.banking;
+package dev.andrylat.banking.card;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import dev.andrylat.banking.card.datacontainers.PaymentSystem;
 import dev.andrylat.banking.card.validators.CardNumderValidator;
-import dev.andrylat.banking.card.validators.PaymentSystem;
-import dev.andrylat.banking.card.validators.CardValidator;
+import dev.andrylat.banking.interfaces.Dialoque;
+import dev.andrylat.banking.interfaces.Validator;
 
-public class CardChecker {
+public class CardCheckerDialoque implements Dialoque{
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        CardValidator validator = new CardNumderValidator();
+    @Override
+    public void start() {
+        Scanner scanner =  new Scanner(System.in);
         
-        System.out.println("Enter card number");
+    	System.out.println("Enter card number");
+    	String cardNumber = scanner.nextLine();
         
-        String cardNumber = scanner.nextLine();
+        Validator validator = new CardNumderValidator();
         
         List<String> errorMessages = validator.validate(cardNumber);
         
